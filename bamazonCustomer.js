@@ -1,6 +1,7 @@
 const mysql = require('mysql');
 const inquirer = require('inquirer');
 const Table = require('cli-table');
+// const colors = require('colors');
 
 const connection = mysql.createConnection({
     host: 'localhost',
@@ -25,24 +26,20 @@ connection.connect(function(err) {
 
 
 function displayProducts() {
-  //show all products from database.
+  //show all products from database
   connection.query('SELECT * FROM products', function(error, response) {
       if (error) { console.log(error) };
-      //New instance of our constructor
+
       const productTable = new Table({
-          //declare the value categories
           head: ['Item ID', 'Product Name', 'Department', 'Price', 'Quantity Available'],
-          //set widths to scale
           colWidths: [10, 36, 24, 10, 20]
       });
-      //for each row of the loop
+
       for (i = 0; i < response.length; i++) {
-          //push data to table
           productTable.push(
               [response[i].item_id, response[i].product_name, response[i].department_name, response[i].price, response[i].stock_quantity]
           );
       }
-      //log the completed table to console
       console.log(productTable.toString());
       makePurchase();
   });
@@ -67,11 +64,10 @@ function makePurchase() {
       var idDesired = answers.ID;
       purchaseUpdateDatabase(idDesired, quantityDesired);
   });
-
 }; 
 
 function purchaseUpdateDatabase(ID, quantityNeeded) {
-  //check quantity of desired purchase. Minus quantity of the item_id from database if possible. Else inform user 'Insufficient quantity!' 
+  //check quantity of item to purchase.
   connection.query('SELECT * FROM products WHERE item_id = ' + ID, function(error, response) {
       if (error) { console.log(error) };
 
@@ -79,17 +75,14 @@ function purchaseUpdateDatabase(ID, quantityNeeded) {
       if (quantityNeeded <= response[0].stock_quantity) {
           //calculate cost
           var totalCost = response[0].price * quantityNeeded;
-          //inform user
-        //   console.log('Thank you for shopping with Bamazon!');
+          //notify user
           console.log('Your total cost for ' + quantityNeeded + ' ' + response[0].product_name + ' is ' + totalCost + '.');
-          //update database, minus purchased quantity
+          //update database with new quantity
           connection.query('UPDATE products SET stock_quantity = stock_quantity - ' + quantityNeeded + ' WHERE item_id = ' + ID);
       } else {
           console.log('Insufficient quantity!');
       };
-      displayproducts();
+      displayProducts();
   });
 
 };
-
-// displayProducts();
