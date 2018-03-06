@@ -4,10 +4,7 @@
   "description": "app using mysql and inquirer for an auctions",
   "main": "bamazonCustomer.js",
   "dependencies": {
-    "cli-table": "^0.3.1",
-    "colors": "^1.1.2",
-    "inquirer": "^5.1.0",
-    "mysql": "^2.15.0"
+
   },
   "devDependencies": {},
   "scripts": {
