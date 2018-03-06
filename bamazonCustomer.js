@@ -76,12 +76,13 @@ function purchaseUpdateDatabase(ID, quantityNeeded) {
           //calculate cost
           var totalCost = response[0].price * quantityNeeded;
           //notify user
-          console.log('Your total cost for ' + quantityNeeded + ' ' + response[0].product_name + ' is ' + totalCost + '.');
+          console.log('Thanks for your purchase.\nYour total cost for ' + quantityNeeded + ' ' + response[0].product_name + ' is ' + totalCost + '.');
           //update database with new quantity
           connection.query('UPDATE products SET stock_quantity = stock_quantity - ' + quantityNeeded + ' WHERE item_id = ' + ID);
       } else {
           console.log('Insufficient quantity!');
       };
+    //   start over again
       displayProducts();
   });
 

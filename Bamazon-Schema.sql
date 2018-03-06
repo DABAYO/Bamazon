@@ -13,19 +13,19 @@ CREATE TABLE products(
 );
 
 INSERT INTO products (product_name, department_name, price, stock_quantity)
-VALUE ("Rocking Chair","Furniture", 80, 49);
+VALUE ("Rocking Chair","Furniture", 40, 19);
 
 INSERT INTO products (product_name, department_name, price, stock_quantity)
-VALUE ("Drone","Toys", 99, 76);
+VALUE ("Drone","Toys", 29, 56);
 
 INSERT INTO products (product_name, department_name, price, stock_quantity)
-VALUE ("Bluetooth Speaker","Electronics", 75, 30);
+VALUE ("Bluetooth Speaker","Electronics", 100, 30);
 
 INSERT INTO products (product_name, department_name, price, stock_quantity)
-VALUE ("Wireless Headphones","Electronics", 150, 48);
+VALUE ("Wireless Headphones","Electronics", 99, 18);
 
 INSERT INTO products (product_name, department_name, price, stock_quantity)
-VALUE ("Toaster","Kitchen", 24, 31);
+VALUE ("Toaster","Kitchen", 14, 31);
 
 INSERT INTO products (product_name, department_name, price, stock_quantity)
 VALUE ("Washing Machine","Aplliances", 360, 18);
